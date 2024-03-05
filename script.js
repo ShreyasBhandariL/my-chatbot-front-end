@@ -14,8 +14,7 @@ function sendMessage() {
       .then((response) => response.json())
       .then((data) => {
         // Handle the response from the backend API
-          appendMessage("AI Bot", data.response);
-          console.log(data.response);  // Assuming your API response has a 'response' field
+        appendMessage("AI Bot", data.response); // Assuming your API response has a 'response' field
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -33,15 +32,16 @@ function appendMessage(sender, message) {
   messageElement.innerHTML = `<strong>${sender}:</strong>`;
   chatBox.appendChild(messageElement);
 
-  // Remove the leading and trailing ``` characters
-  message = message.slice(3, -3);
+  // Split the code block by newline characters
+  var lines = message.split("\n");
 
-  // Wrap the code block with <pre> and <code> tags
-  var codeBlock = document.createElement("pre");
-  var codeElement = document.createElement("code");
-  codeElement.textContent = message.trim(); // Remove leading/trailing whitespace
-  codeBlock.appendChild(codeElement);
-  messageElement.appendChild(codeBlock);
+  // Create a <code> element for each line and append it to the message element
+  lines.forEach(function (line) {
+    var codeElement = document.createElement("code");
+    codeElement.textContent = line;
+    messageElement.appendChild(document.createElement("br")); // Add line break
+    messageElement.appendChild(codeElement);
+  });
 
   chatBox.scrollTop = chatBox.scrollHeight; // Scroll to bottom
 }
