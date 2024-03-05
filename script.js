@@ -26,6 +26,7 @@ function sendMessage() {
 }
 
 function appendMessage(sender, message) {
+  console.log(message);
   var chatBox = document.getElementById("chat-box");
 
   var messageElement = document.createElement("div");
@@ -44,5 +45,3 @@ function appendMessage(sender, message) {
 
   chatBox.scrollTop = chatBox.scrollHeight; // Scroll to bottom
 }
-
-
