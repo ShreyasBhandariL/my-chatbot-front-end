@@ -4,7 +4,7 @@ function sendMessage() {
     appendMessage("You", userInput);
 
     // Make an HTTP POST request to your backend API
-    fetch("http://localhost:5000/my-ai", {
+    fetch("https://my-chatbot-backend.onrender.com/my-ai", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
