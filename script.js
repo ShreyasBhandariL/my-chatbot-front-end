@@ -32,17 +32,17 @@ function appendMessage(sender, message) {
   messageElement.innerHTML = `<strong>${sender}:</strong>`;
   chatBox.appendChild(messageElement);
 
-  // Split the code block by newline characters
-  var lines = message.split("\n");
+  // Remove the leading and trailing ``` characters
+  message = message.slice(3, -3);
 
-  // Create a <code> element for each line and append it to the message element
-  lines.forEach(function (line) {
-    var codeElement = document.createElement("code");
-    codeElement.textContent = line;
-    messageElement.appendChild(document.createElement("br")); // Add line break
-    messageElement.appendChild(codeElement);
-  });
+  // Wrap the code block with <pre> and <code> tags
+  var codeBlock = document.createElement("pre");
+  var codeElement = document.createElement("code");
+  codeElement.textContent = message.trim(); // Remove leading/trailing whitespace
+  codeBlock.appendChild(codeElement);
+  messageElement.appendChild(codeBlock);
 
   chatBox.scrollTop = chatBox.scrollHeight; // Scroll to bottom
 }
+
 
