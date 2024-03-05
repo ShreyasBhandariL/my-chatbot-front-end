@@ -1,3 +1,5 @@
+const { response } = require("express");
+
 function sendMessage() {
   var userInput = document.getElementById("user-input").value;
   if (userInput.trim() !== "") {
@@ -14,7 +16,8 @@ function sendMessage() {
       .then((response) => response.json())
       .then((data) => {
         // Handle the response from the backend API
-        appendMessage("AI Bot", data.response); // Assuming your API response has a 'response' field
+        appendMessage("AI Bot", data.response);
+        console.log(data.response); // Assuming your API response has a 'response' field
       })
       .catch((error) => {
         console.error("Error:", error);
