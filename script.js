@@ -27,8 +27,16 @@ function sendMessage() {
 
 function appendMessage(sender, message) {
   var chatBox = document.getElementById("chat-box");
-  var messageElement = document.createElement("div");
-  messageElement.innerHTML = `<strong>${sender}:</strong> ${message}`;
-  chatBox.appendChild(messageElement);
+
+  // Split the message by newline characters
+  var lines = message.split("\n");
+
+  // Iterate through each line and append it to the chat box
+  lines.forEach(function (line) {
+    var messageElement = document.createElement("div");
+    messageElement.innerHTML = `<strong>${sender}:</strong> ${line}`;
+    chatBox.appendChild(messageElement);
+  });
+
   chatBox.scrollTop = chatBox.scrollHeight; // Scroll to bottom
 }
