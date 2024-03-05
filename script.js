@@ -14,7 +14,8 @@ function sendMessage() {
       .then((response) => response.json())
       .then((data) => {
         // Handle the response from the backend API
-        appendMessage("AI Bot", data.response); // Assuming your API response has a 'response' field
+          appendMessage("AI Bot", data.response);
+          console.log(data.response);  // Assuming your API response has a 'response' field
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -26,7 +27,6 @@ function sendMessage() {
 }
 
 function appendMessage(sender, message) {
-  console.log(message);
   var chatBox = document.getElementById("chat-box");
 
   var messageElement = document.createElement("div");
